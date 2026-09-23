@@ -1,4 +1,10 @@
+using Microsoft.EntityFrameworkCore;
+using grad_manager.Data;
+
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseSqlite("Data Source=gradmanager.db"));
 
 // Add services to the container.
 builder.Services.AddRazorPages();
