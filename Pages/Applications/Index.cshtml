@@ -1,0 +1,38 @@
+@page
+@model grad_manager.Pages.Applications.IndexModel
+
+<h1>Applications</h1>
+
+@if (Model.Applications.Count == 0)
+{
+    <p>You don't have any applications yet.</p>
+}
+else
+{
+    <table>
+        <thead>
+            <tr>
+                <th>Company</th>
+                <th>Role</th>
+                <th>Location</th>
+                <th>Deadline</th>
+                <th>Date Applied</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var application in Model.Applications)
+            {
+                <tr>
+                    <td>@application.Company</td>
+                    <td>@application.Role</td>
+                    <td>@application.Location</td>
+                    <td>@application.Deadline?.ToString("dd/MM/yyyy")</td>
+                    <td>@application.DateApplied?.ToString("dd/MM/yyyy")</td>
+                    <td>@application.Status</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

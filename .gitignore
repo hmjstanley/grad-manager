@@ -1,1 +1,3 @@
-gradmanager.db
+bin/
+obj/
+gradmanager.db*
