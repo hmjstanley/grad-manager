@@ -1,0 +1,29 @@
+@page
+@model grad_manager.Pages.Applications.DeleteModel
+
+<h1>Delete Application</h1>
+
+<h3>Are you sure you want to delete this application?</h3>
+
+<div>
+    <dl>
+        <dt>Company</dt>
+        <dd>@Model.Application.Company</dd>
+
+        <dt>Role</dt>
+        <dd>@Model.Application.Role</dd>
+
+        <dt>Location</dt>
+        <dd>@Model.Application.Location</dd>
+
+        <dt>Status</dt>
+        <dd>@Model.Application.Status</dd>
+    </dl>
+
+    <form method="post">
+        <input type="hidden" asp-for="Application.Id" />
+
+        <button type="submit">Delete</button>
+        <a asp-page="./Index">Cancel</a>
+    </form>
+</div>
