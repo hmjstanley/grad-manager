@@ -3,59 +3,89 @@
 
 <div class="application-details">
 
-    <div class="page-header">
-        <h1>@Model.Application.Company</h1>
-
-        <a asp-page="./Index" class="btn btn-secondary">
-            Back to Applications
-        </a>
+    <div class="details-header">
+        <div>
+            <h1>@Model.Application.Company</h1>
+            <p>@Model.Application.Role</p>
+        </div>
     </div>
 
-    <div class="application-card">
+    <div class="details-card">
 
-        <h2>@Model.Application.Role</h2>
+        <div class="details-grid">
 
-        <div class="application-info">
-
-            <div>
-                <strong>Company</strong>
+            <div class="details-field">
+                <span>Company</span>
                 <p>@Model.Application.Company</p>
             </div>
 
-            <div>
-                <strong>Location</strong>
+            <div class="details-field">
+                <span>Role</span>
+                <p>@Model.Application.Role</p>
+            </div>
+
+            <div class="details-field">
+                <span>Location</span>
                 <p>@Model.Application.Location</p>
             </div>
 
-            <div>
-                <strong>Deadline</strong>
+            <div class="details-field">
+                <span>Status</span>
+                <p class="status-badge">@Model.Application.Status</p>
+            </div>
+
+            <div class="details-field">
+                <span>Deadline</span>
                 <p>@Model.Application.Deadline?.ToString("dd/MM/yyyy")</p>
             </div>
 
-            <div>
-                <strong>Date Applied</strong>
+            <div class="details-field">
+                <span>Date Applied</span>
                 <p>@Model.Application.DateApplied?.ToString("dd/MM/yyyy")</p>
-            </div>
-
-            <div>
-                <strong>Status</strong>
-                <p>@Model.Application.Status</p>
             </div>
 
         </div>
 
         <div class="application-actions">
-            <a asp-page="./Edit"
-               asp-route-id="@Model.Application.Id"
-               class="btn btn-primary">
-                Edit
+
+            <a asp-page="./Index" class="back-link">
+                Back to Applications
             </a>
 
-            <a asp-page="./Delete"
-               asp-route-id="@Model.Application.Id"
-               class="btn btn-danger">
-                Delete
-            </a>
+            <div class="action-buttons">
+
+                <a asp-page="./Delete"
+                   asp-route-id="@Model.Application.Id"
+                   class="delete-button"
+                   aria-label="Delete application"
+                   title="Delete application">
+
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                         width="20"
+                         height="20"
+                         viewBox="0 0 24 24"
+                         fill="none"
+                         stroke="currentColor"
+                         stroke-width="2"
+                         stroke-linecap="round"
+                         stroke-linejoin="round">
+
+                        <polyline points="3 6 5 6 21 6"></polyline>
+                        <path d="M19 6l-1 14H6L5 6"></path>
+                        <path d="M10 11v5"></path>
+                        <path d="M14 11v5"></path>
+                        <path d="M9 6V4h6v2"></path>
+                    </svg>
+                </a>
+
+                <a asp-page="./Edit"
+                   asp-route-id="@Model.Application.Id"
+                   class="save-button">
+                    Edit Application
+                </a>
+
+            </div>
+
         </div>
 
     </div>

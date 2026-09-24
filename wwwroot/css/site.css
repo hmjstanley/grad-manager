@@ -169,3 +169,278 @@ body {
 .application-row span {
     color: #495057;
 }
+
+/* Create Application */
+
+.create-page {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.create-header {
+    margin-bottom: 2rem;
+}
+
+.create-header h1 {
+    margin-bottom: 0.4rem;
+}
+
+.create-header p {
+    color: #808080;
+    margin: 0;
+}
+
+.create-card {
+    background-color: #FFFFFF;
+    border: 1px solid #e5e5e5;
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+/* Form layout */
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: #555555;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 0.75rem 0.9rem;
+    border: 1px solid #d9d9d9;
+    border-radius: 8px;
+    background-color: #FFFFFF;
+    font-size: 0.95rem;
+    color: #333333;
+    box-sizing: border-box;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Input focus */
+
+.form-group input:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: #f69dcc;
+}
+
+/* Placeholder */
+
+.form-group input::placeholder {
+    color: #aaaaaa;
+}
+
+/* Validation */
+
+.form-group span {
+    color: #d9534f;
+    font-size: 0.85rem;
+    margin-top: 0.3rem;
+}
+
+/* Buttons */
+
+.form-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 2rem;
+    padding-top: 1rem;
+}
+
+.back-link {
+    color: #808080;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.back-link:hover {
+    color: #f69dcc;
+}
+
+.save-button {
+    padding: 0.75rem 1.5rem;
+    background-color: #f69dcc;
+    border: 1px solid #f69dcc;
+    border-radius: 8px;
+    color: #FFFFFF;
+    font-weight: 600;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.save-button:hover {
+    background-color: #e889b8;
+    border-color: #e889b8;
+}
+
+/* Application Details */
+
+.application-details {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.details-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.details-header h1 {
+    margin: 0;
+}
+
+.details-header p {
+    margin: 0.4rem 0 0;
+    color: #808080;
+    font-size: 1.05rem;
+}
+
+.details-card {
+    background-color: #FFFFFF;
+    border: 1px solid #e5e5e5;
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+/* Information layout */
+
+.details-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 3rem;
+    row-gap: 2rem;
+}
+
+.details-field {
+    display: flex;
+    flex-direction: column;
+}
+
+.details-field span {
+    margin-bottom: 0.5rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #808080;
+}
+
+.details-field p {
+    margin: 0;
+    font-size: 1rem;
+    color: #333333;
+}
+
+/* Status */
+
+.status-badge {
+    display: inline-block;
+    width: fit-content;
+    padding: 0.4rem 0.8rem;
+    background-color: #fce3f0;
+    color: #d66b9f !important;
+    border-radius: 20px;
+    font-size: 0.9rem !important;
+}
+
+/* Actions */
+
+.application-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #eeeeee;
+}
+
+.action-buttons {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.application-actions a {
+    text-decoration: none;
+}
+
+/* Delete button */
+
+.delete-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 42px;
+    height: 42px;
+
+    background-color: transparent;
+    border: none;
+    border-radius: 8px;
+
+    color: #808080;
+    text-decoration: none;
+
+    transition: color 0.2s ease;
+}
+
+.delete-button:hover {
+    color: #dc3545;
+}
+
+.delete-button svg {
+    display: block;
+}
+
+/* Delete Page */
+.delete-warning {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    margin-top: 2rem;
+    padding: 1rem 1.25rem;
+}
+
+.delete-warning strong {
+    color: #dc2f1c;
+    font-size: 0.9rem;
+}
+
+.delete-warning span {
+    color: #f07474;
+    font-size: 0.9rem;
+}
+
+.delete-confirm-button {
+    padding: 0.75rem 1.5rem;
+    background-color: #dc3545;
+    border: 1px solid #dc3545;
+    border-radius: 8px;
+    color: #FFFFFF;
+    font-weight: 600;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.delete-confirm-button:hover {
+    background-color: #bb2d3b;
+    border-color: #bb2d3b;
+}

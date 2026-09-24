@@ -1,62 +1,80 @@
 @page
 @model grad_manager.Pages.Applications.CreateModel
 
-<h1>Add Application</h1>
+<div class="create-page">
 
-<form method="post">
-
-    <div>
-        <label asp-for="Application.Company"></label>
-        <input asp-for="Application.Company" />
-        <span asp-validation-for="Application.Company"></span>
+    <div class="create-header">
+        <h1>Create Application</h1>
     </div>
 
-    <div>
-        <label asp-for="Application.Role"></label>
-        <input asp-for="Application.Role" />
-        <span asp-validation-for="Application.Role"></span>
+    <div class="create-card">
+
+        <form method="post">
+
+            <div class="form-grid">
+
+                <div class="form-group">
+                    <label asp-for="Application.Company"></label>
+                    <input asp-for="Application.Company" placeholder="e.g. Accenture" />
+                    <span asp-validation-for="Application.Company"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Application.Role"></label>
+                    <input asp-for="Application.Role" placeholder="e.g. Graduate Software Developer" />
+                    <span asp-validation-for="Application.Role"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Application.Location"></label>
+                    <input asp-for="Application.Location" placeholder="e.g. Newcastle" />
+                    <span asp-validation-for="Application.Location"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Application.Status"></label>
+
+                    <select asp-for="Application.Status">
+                        <option value="Interested">Interested</option>
+                        <option value="Application Started">Application Started</option>
+                        <option value="Applied">Applied</option>
+                        <option value="Online Test">Online Test</option>
+                        <option value="Interview">Interview</option>
+                        <option value="Assessment Centre">Assessment Centre</option>
+                        <option value="Offer">Offer</option>
+                        <option value="Rejected">Rejected</option>
+                        <option value="Withdrawn">Withdrawn</option>
+                    </select>
+
+                    <span asp-validation-for="Application.Status"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Application.Deadline"></label>
+                    <input asp-for="Application.Deadline" type="date" />
+                    <span asp-validation-for="Application.Deadline"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Application.DateApplied"></label>
+                    <input asp-for="Application.DateApplied" type="date" />
+                    <span asp-validation-for="Application.DateApplied"></span>
+                </div>
+
+            </div>
+
+            <div class="form-actions">
+                <a asp-page="./Index" class="back-link">
+                    Back to Applications
+                </a>
+
+                <button type="submit" class="save-button">
+                    Save Application
+                </button>
+            </div>
+
+        </form>
+
     </div>
 
-    <div>
-        <label asp-for="Application.Location"></label>
-        <input asp-for="Application.Location" />
-        <span asp-validation-for="Application.Location"></span>
-    </div>
-
-    <div>
-        <label asp-for="Application.Deadline"></label>
-        <input asp-for="Application.Deadline" type="date" />
-        <span asp-validation-for="Application.Deadline"></span>
-    </div>
-
-    <div>
-        <label asp-for="Application.DateApplied"></label>
-        <input asp-for="Application.DateApplied" type="date" />
-        <span asp-validation-for="Application.DateApplied"></span>
-    </div>
-
-    <div>
-        <label asp-for="Application.Status"></label>
-
-        <select asp-for="Application.Status">
-            <option value="Interested">Interested</option>
-            <option value="Application Started">Application Started</option>
-            <option value="Applied">Applied</option>
-            <option value="Online Test">Online Test</option>
-            <option value="Interview">Interview</option>
-            <option value="Assessment Centre">Assessment Centre</option>
-            <option value="Offer">Offer</option>
-            <option value="Rejected">Rejected</option>
-            <option value="Withdrawn">Withdrawn</option>
-        </select>
-
-        <span asp-validation-for="Application.Status"></span>
-    </div>
-
-    <button type="submit">Save Application</button>
-
-</form>
-
-<p>
-    <a asp-page="./Index">Back to Applications</a>
-</p>
+</div>
