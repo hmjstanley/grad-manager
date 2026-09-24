@@ -18,6 +18,12 @@ html {
     border-color: #e889b8;
 }
 
+.btn-primary:active,
+.btn-primary:focus {
+    background-color: #e889b8 !important;
+    border-color: #e889b8 !important;
+}
+
 html {
   position: relative;
   min-height: 100%;
