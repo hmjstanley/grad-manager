@@ -1,0 +1,63 @@
+@page
+@model grad_manager.Pages.Applications.DetailsModel
+
+<div class="application-details">
+
+    <div class="page-header">
+        <h1>@Model.Application.Company</h1>
+
+        <a asp-page="./Index" class="btn btn-secondary">
+            Back to Applications
+        </a>
+    </div>
+
+    <div class="application-card">
+
+        <h2>@Model.Application.Role</h2>
+
+        <div class="application-info">
+
+            <div>
+                <strong>Company</strong>
+                <p>@Model.Application.Company</p>
+            </div>
+
+            <div>
+                <strong>Location</strong>
+                <p>@Model.Application.Location</p>
+            </div>
+
+            <div>
+                <strong>Deadline</strong>
+                <p>@Model.Application.Deadline?.ToString("dd/MM/yyyy")</p>
+            </div>
+
+            <div>
+                <strong>Date Applied</strong>
+                <p>@Model.Application.DateApplied?.ToString("dd/MM/yyyy")</p>
+            </div>
+
+            <div>
+                <strong>Status</strong>
+                <p>@Model.Application.Status</p>
+            </div>
+
+        </div>
+
+        <div class="application-actions">
+            <a asp-page="./Edit"
+               asp-route-id="@Model.Application.Id"
+               class="btn btn-primary">
+                Edit
+            </a>
+
+            <a asp-page="./Delete"
+               asp-route-id="@Model.Application.Id"
+               class="btn btn-danger">
+                Delete
+            </a>
+        </div>
+
+    </div>
+
+</div>

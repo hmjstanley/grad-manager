@@ -1,43 +1,57 @@
 @page
 @model grad_manager.Pages.Applications.IndexModel
 
-<h1>Applications</h1>
+<div class="applications-page">
 
-@if (Model.Applications.Count == 0)
-{
-    <p>You don't have any applications yet.</p>
-}
-else
-{
-    <table>
-        <thead>
-            <tr>
-                <th>Company</th>
-                <th>Role</th>
-                <th>Location</th>
-                <th>Deadline</th>
-                <th>Date Applied</th>
-                <th>Status</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
+    <div class="page-header">
+        <h1>Applications</h1>
 
-        <tbody>
+        <a asp-page="./Create" class="btn btn-primary">
+            Create Application
+        </a>
+    </div>
+
+    @if (Model.Applications.Count == 0)
+    {
+        <p>You don't have any applications yet.</p>
+    }
+    else
+    {
+        <div class="applications-table">
+
+            <!-- Headings -->
+            <div class="application-headings">
+                <span>Company</span>
+                <span>Role</span>
+                <span>Location</span>
+                <span>Deadline</span>
+                <span>Date Applied</span>
+                <span>Status</span>
+            </div>
+
+            <!-- Application rows -->
             @foreach (var application in Model.Applications)
             {
-                <tr>
-                    <td>@application.Company</td>
-                    <td>@application.Role</td>
-                    <td>@application.Location</td>
-                    <td>@application.Deadline?.ToString("dd/MM/yyyy")</td>
-                    <td>@application.DateApplied?.ToString("dd/MM/yyyy")</td>
-                    <td>@application.Status</td>
-                    <td>
-                        <a asp-page="./Edit" asp-route-id="@application.Id">Edit</a>
-                        <a asp-page="./Delete" asp-route-id="@application.Id">Delete</a>
-                    </td>
-                </tr>
+                <a asp-page="./Details"
+                   asp-route-id="@application.Id"
+                   class="application-row">
+
+                    <strong>@application.Company</strong>
+
+                    <span>@application.Role</span>
+
+                    <span>@application.Location</span>
+
+                    <span>@application.Deadline?.ToString("dd/MM/yyyy")</span>
+
+                    <span>@application.DateApplied?.ToString("dd/MM/yyyy")</span>
+
+                    <span>@application.Status</span>
+
+                </a>
             }
-        </tbody>
-    </table>
-}
+
+        </div>
+    }
+
+</div>
