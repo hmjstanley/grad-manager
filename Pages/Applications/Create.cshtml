@@ -32,9 +32,9 @@
                 </div>
 
                 <div class="form-group">
-                    <label asp-for="Application.Status"></label>
+                    <label asp-for="Application.Stage"></label>
 
-                    <select asp-for="Application.Status">
+                    <select asp-for="Application.Stage">
                         <option value="Interested">Interested</option>
                         <option value="Application Started">Application Started</option>
                         <option value="Applied">Applied</option>
@@ -46,7 +46,7 @@
                         <option value="Withdrawn">Withdrawn</option>
                     </select>
 
-                    <span asp-validation-for="Application.Status"></span>
+                    <span asp-validation-for="Application.Stage"></span>
                 </div>
 
                 <div class="form-group">
@@ -59,6 +59,22 @@
                     <label asp-for="Application.DateApplied"></label>
                     <input asp-for="Application.DateApplied" type="date" />
                     <span asp-validation-for="Application.DateApplied"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Application.Url"></label>
+                    <input asp-for="Application.Url"
+                        type="url"
+                        placeholder="e.g. https://www.example.com/graduate-scheme" />
+                    <span asp-validation-for="Application.Url"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Application.Notes"></label>
+                    <textarea asp-for="Application.Notes"
+                            rows="5"
+                            placeholder="Add any notes about this application..."></textarea>
+                    <span asp-validation-for="Application.Notes"></span>
                 </div>
 
             </div>

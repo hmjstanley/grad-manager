@@ -55,7 +55,9 @@ public class EditModel : PageModel
         applicationToUpdate.Location = Application.Location;
         applicationToUpdate.Deadline = Application.Deadline;
         applicationToUpdate.DateApplied = Application.DateApplied;
-        applicationToUpdate.Status = Application.Status;
+        applicationToUpdate.Stage = Application.Stage;
+        applicationToUpdate.Url = Application.Url;
+        applicationToUpdate.Notes = Application.Notes;
 
         await _context.SaveChangesAsync();
 

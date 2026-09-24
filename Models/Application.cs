@@ -14,5 +14,9 @@ public class Application
 
     public DateTime? DateApplied { get; set; }
 
-    public string Status { get; set; } = "Interested";
+    public string Stage { get; set; } = "Interested";
+
+    public string Url { get; set; } = "";
+
+    public string? Notes { get; set; }
 }

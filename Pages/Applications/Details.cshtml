@@ -30,8 +30,8 @@
             </div>
 
             <div class="details-field">
-                <span>Status</span>
-                <p class="status-badge">@Model.Application.Status</p>
+                <span>Stage</span>
+                <p class="stage-badge">@Model.Application.Stage</p>
             </div>
 
             <div class="details-field">
@@ -42,6 +42,27 @@
             <div class="details-field">
                 <span>Date Applied</span>
                 <p>@Model.Application.DateApplied?.ToString("dd/MM/yyyy")</p>
+            </div>
+
+            <div class="details-field">
+                <span>URL</span>
+                <p>
+                    @if (!string.IsNullOrWhiteSpace(Model.Application.Url))
+                    {
+                        <a href="@Model.Application.Url" target="_blank" rel="noopener noreferrer">
+                            @Model.Application.Url
+                        </a>
+                    }
+                    else
+                    {
+                        <span>Not provided</span>
+                    }
+                </p>
+            </div>
+
+            <div class="details-field">
+                <span>Notes</span>
+                <p>@Model.Application.Notes</p>
             </div>
 
         </div>

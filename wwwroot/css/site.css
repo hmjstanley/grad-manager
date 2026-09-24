@@ -224,7 +224,8 @@ body {
 }
 
 .form-group input,
-.form-group select {
+.form-group select,
+.form-group textarea {
     width: 100%;
     padding: 0.75rem 0.9rem;
     border: 1px solid #d9d9d9;
@@ -234,12 +235,15 @@ body {
     color: #333333;
     box-sizing: border-box;
     transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    font-family: inherit;
+    resize: vertical;
 }
 
 /* Input focus */
 
 .form-group input:focus,
-.form-group select:focus {
+.form-group select:focus,
+.form-group textarea:focus {
     outline: none;
     border-color: #f69dcc;
 }
@@ -354,9 +358,19 @@ body {
     color: #333333;
 }
 
-/* Status */
+.details-field a {
+    color: #f69dcc;
+    text-decoration: none;
+}
 
-.status-badge {
+.details-field a:hover {
+    color: #e889b8;
+    text-decoration: underline;
+}
+
+/* Stage */
+
+.stage-badge {
     display: inline-block;
     width: fit-content;
     padding: 0.4rem 0.8rem;
