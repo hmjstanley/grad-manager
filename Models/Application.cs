@@ -19,4 +19,6 @@ public class Application
     public string Url { get; set; } = "";
 
     public string? Notes { get; set; }
+
+    public List<ApplicationTask> ApplicationTasks { get; set; } = [];
 }
