@@ -1,10 +1,88 @@
 ﻿@page
-@model IndexModel
-@{
-    ViewData["Title"] = "Home page";
-}
+@model grad_manager.Pages.IndexModel
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="dashboard">
+
+    <div class="dashboard-header">
+        <div>
+            <h1>Home Page</h1>
+        </div>
+
+        <a asp-page="/Applications/Create" class="btn btn-primary">
+            Create Application
+        </a>
+    </div>
+
+
+    <div class="dashboard-stats">
+
+        <div class="stat-card">
+            <span>Total Applications</span>
+            <strong>@Model.TotalApplications</strong>
+        </div>
+
+        <div class="stat-card">
+            <span>Applications Submitted</span>
+            <strong>@Model.ApplicationsSubmitted</strong>
+        </div>
+
+        <div class="stat-card">
+            <span>Interviews</span>
+            <strong>@Model.Interviews</strong>
+        </div>
+
+        <div class="stat-card">
+            <span>Offers</span>
+            <strong>@Model.Offers</strong>
+        </div>
+
+    </div>
+
+
+    <div class="dashboard-section">
+
+        <div class="section-header">
+            <h2>Upcoming Deadlines</h2>
+
+            <a asp-page="/Applications/Index">
+                View all applications
+            </a>
+        </div>
+
+        @if (Model.UpcomingDeadlines.Count == 0)
+        {
+            <div class="empty-state">
+                <p>No upcoming deadlines.</p>
+            </div>
+        }
+        else
+        {
+            <div class="dashboard-applications">
+
+                @foreach (var application in Model.UpcomingDeadlines)
+                {
+                    <a asp-page="/Applications/Details"
+                       asp-route-id="@application.Id"
+                       class="dashboard-application">
+
+                        <div>
+                            <strong>@application.Company</strong>
+                            <span>@application.Role</span>
+                        </div>
+
+                        <div class="dashboard-deadline">
+                            <span>Deadline</span>
+                            <strong>
+                                @application.Deadline?.ToString("dd/MM/yyyy")
+                            </strong>
+                        </div>
+
+                    </a>
+                }
+
+            </div>
+        }
+
+    </div>
+
 </div>

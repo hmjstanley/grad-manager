@@ -464,3 +464,152 @@ body {
     background-color: #bb2d3b;
     border-color: #bb2d3b;
 }
+
+/* Dashboard */
+.dashboard {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.dashboard-header h1 {
+    margin-bottom: 0.4rem;
+}
+
+.dashboard-header p {
+    margin: 0;
+    color: #808080;
+}
+
+
+/* Statistics */
+
+.dashboard-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+}
+
+.stat-card {
+    background-color: #FFFFFF;
+    border: 1px solid #e5e5e5;
+    border-radius: 16px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.stat-card span {
+    display: block;
+    margin-bottom: 0.75rem;
+    color: #808080;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.stat-card strong {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #333333;
+}
+
+
+/* Upcoming deadlines */
+
+.dashboard-section {
+    background-color: #FFFFFF;
+    border: 1px solid #e5e5e5;
+    border-radius: 16px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.25rem;
+}
+
+.section-header h2 {
+    margin: 0;
+    font-size: 1.2rem;
+}
+
+.section-header a {
+    color: #f69dcc;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.section-header a:hover {
+    color: #e889b8;
+}
+
+
+/* Application rows */
+
+.dashboard-applications {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.dashboard-application {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.25rem;
+    border: 1px solid #eeeeee;
+    border-radius: 10px;
+    text-decoration: none;
+    color: inherit;
+    outline: none;
+}
+
+.dashboard-application:hover {
+    outline: 4px solid #fac8e3;
+    outline-offset: -1px;
+}
+
+.dashboard-application > div:first-child {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.dashboard-application span {
+    color: #808080;
+    font-size: 0.9rem;
+}
+
+.dashboard-application strong {
+    color: #333333;
+}
+
+.dashboard-deadline {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.25rem;
+}
+
+.dashboard-deadline strong {
+    color: #555555;
+}
+
+
+/* Empty state */
+
+.empty-state {
+    padding: 2rem;
+    text-align: center;
+    color: #808080;
+}
