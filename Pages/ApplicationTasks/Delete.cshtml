@@ -1,0 +1,52 @@
+@page
+@model grad_manager.Pages.ApplicationTasks.DeleteModel
+
+<div class="application-details">
+
+    <div class="details-header">
+        <div>
+            <h1>Delete Task</h1>
+        </div>
+    </div>
+
+    <div class="details-card">
+
+        <div class="details-grid">
+
+            <div class="details-field">
+                <span>Task</span>
+                <p>@Model.ApplicationTask.Task</p>
+            </div>
+
+            <div class="details-field">
+                <span>Deadline</span>
+                <p>@Model.ApplicationTask.Deadline</p>
+            </div>
+
+        </div>
+
+        <div class="delete-warning">
+            <strong>Are you sure you want to delete this task?</strong>
+        </div>
+
+        <div class="application-actions">
+
+            <a asp-page="./Index"
+               asp-route-id="@Model.ApplicationTask.Id"
+               class="back-link">
+                Back to Tasks
+            </a>
+
+            <form method="post">
+                <input type="hidden" asp-for="ApplicationTask.Id" />
+
+                <button type="submit" class="delete-confirm-button">
+                    Delete Task
+                </button>
+            </form>
+
+        </div>
+
+    </div>
+
+</div>

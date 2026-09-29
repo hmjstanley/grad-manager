@@ -1,0 +1,44 @@
+@page
+@model grad_manager.Pages.ApplicationTasks.CreateModel
+
+<div class="create-page">
+
+    <div class="create-header">
+        <h1>Create Task</h1>
+    </div>
+
+    <div class="create-card">
+
+        <form method="post">
+
+            <div class="form-grid">
+
+                <div class="form-group">
+                    <label asp-for="ApplicationTask.Task"></label>
+                    <input asp-for="ApplicationTask.Task" placeholder="e.g. Prepare for interview" />
+                    <span asp-validation-for="ApplicationTask.Task"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="ApplicationTask.Deadline"></label>
+                    <input asp-for="ApplicationTask.Deadline" type="date" />
+                    <span asp-validation-for="ApplicationTask.Deadline"></span>
+                </div>
+
+            </div>
+
+            <div class="form-actions">
+                <a asp-page="./Index" class="back-link">
+                    Back to Tasks
+                </a>
+
+                <button type="submit" class="save-button">
+                    Save Task
+                </button>
+            </div>
+
+        </form>
+
+    </div>
+
+</div>

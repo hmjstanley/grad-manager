@@ -1,0 +1,45 @@
+@page
+@model grad_manager.Pages.ApplicationTasks.IndexModel
+
+<div class="applications-page">
+
+    <div class="page-header">
+        <h1>Tasks</h1>
+
+        <a asp-page="./Create" class="btn btn-primary">
+            Create Task
+        </a>
+    </div>
+
+    @if (Model.ApplicationTasks.Count == 0)
+    {
+        <p>You don't have any tasks yet.</p>
+    }
+    else
+    {
+        <div class="applications-table">
+
+            <!-- Headings -->
+            <div class="application-headings">
+                <span>Task</span>
+                <span>Deadline</span>
+            </div>
+
+            <!-- Task rows -->
+            @foreach (var applicationTask in Model.ApplicationTasks)
+            {
+                <a asp-page="./Details"
+                   asp-route-id="@applicationTask.Id"
+                   class="application-row">
+
+                    <strong>@applicationTask.Task</strong>
+
+                    <span>@applicationTask.Deadline?.ToString("dd/MM/yyyy")</span>
+
+                </a>
+            }
+
+        </div>
+    }
+
+</div>
