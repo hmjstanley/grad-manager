@@ -11,4 +11,6 @@ public class ApplicationTask
     public DateTime? Deadline { get; set; }
 
     public String? Task { get; set; }
+
+    public Boolean Finished { get; set; } = false;
 }
