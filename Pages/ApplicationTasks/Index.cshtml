@@ -11,32 +11,99 @@
         </a>
     </div>
 
-    @if (Model.ApplicationTasks.Count == 0)
+    <h3 class="task-header">To do Tasks</h3>
+
+    @if (Model.ToDoTasks.Count == 0)
     {
-        <p>You don't have any tasks yet.</p>
+        <p class="no-task">You don't have any todo tasks</p>
     }
     else
     {
         <div class="applications-table">
 
-            <!-- Headings -->
-            <div class="application-headings">
-                <span>Task</span>
-                <span>Deadline</span>
-            </div>
+            <!-- Task rows -->
+            @foreach (var applicationTask in Model.ToDoTasks)
+            {
+                <div class="task-row @(applicationTask.Finished ? "task-done" : "")">
+
+                    <form method="post" asp-page-handler="SetFinished" class="task-check">
+                        <input type="hidden" name="id" value="@applicationTask.Id" />
+                        <input type="checkbox"
+                            name="finished"
+                            value="true"
+                            checked="@applicationTask.Finished"
+                            onchange="this.form.submit()" />
+                    </form>
+
+                    <div class="task-info">
+                        <strong>@applicationTask.Task</strong>
+
+                        @if (applicationTask.Application != null)
+                        {
+                            <span class="task-application">
+                                @applicationTask.Application.Company · @applicationTask.Application.Role
+                            </span>
+                        }
+                    </div>
+
+                    @if (applicationTask.Deadline.HasValue)
+                    {
+                        <span class="task-deadline">
+                            @applicationTask.Deadline.Value.ToString("dd/MM/yyyy")
+                        </span>
+                    }
+
+                </div>
+
+            }
+
+        </div>
+    }
+
+    <h3 class="task-header-2">Completed Tasks</h3>
+
+    @if (Model.CompletedTasks.Count == 0)
+    {
+        <p class="no-task">You don't have any completed tasks</p>
+    }
+    else
+    {
+        <div class="applications-table">
 
             <!-- Task rows -->
-            @foreach (var applicationTask in Model.ApplicationTasks)
+            @foreach (var applicationTask in Model.CompletedTasks)
             {
-                <a asp-page="./Details"
-                   asp-route-id="@applicationTask.Id"
-                   class="application-row">
+                <div class="task-row @(applicationTask.Finished ? "task-done" : "")">
 
-                    <strong>@applicationTask.Task</strong>
+                    <form method="post" asp-page-handler="SetFinished" class="task-check">
+                        <input type="hidden" name="id" value="@applicationTask.Id" />
+                        <input type="checkbox"
+                            name="finished"
+                            value="true"
+                            checked="@applicationTask.Finished"
+                            onchange="this.form.submit()" />
+                    </form>
 
-                    <span>@applicationTask.Deadline?.ToString("dd/MM/yyyy")</span>
+                    <div class="task-info">
+                        <strong>@applicationTask.Task</strong>
 
-                </a>
+                        @if (applicationTask.Application != null)
+                        {
+                            <span class="task-application">
+                                @applicationTask.Application.Company · @applicationTask.Application.Role
+                            </span>
+                        }
+                    </div>
+
+                    @if (applicationTask.Deadline.HasValue)
+                    {
+                        <span class="task-deadline">
+                            @applicationTask.Deadline.Value.ToString("dd/MM/yyyy")
+                        </span>
+                    }
+
+                </div>
+
             }
 
         </div>
