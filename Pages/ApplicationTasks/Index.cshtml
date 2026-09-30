@@ -5,7 +5,6 @@
 
     <div class="page-header">
         <h1>Tasks</h1>
-
         <a asp-page="./Create" class="btn btn-primary">
             Create Task
         </a>
@@ -21,42 +20,51 @@
     {
         <div class="applications-table">
 
-            <!-- Task rows -->
             @foreach (var applicationTask in Model.ToDoTasks)
             {
                 <div class="task-row @(applicationTask.Finished ? "task-done" : "")">
 
-                    <form method="post" asp-page-handler="SetFinished" class="task-check">
-                        <input type="hidden" name="id" value="@applicationTask.Id" />
+                    <form method="post"
+                          asp-page-handler="SetFinished"
+                          class="task-check">
+
+                        <input type="hidden"
+                               name="id"
+                               value="@applicationTask.Id" />
+
                         <input type="checkbox"
-                            name="finished"
-                            value="true"
-                            checked="@applicationTask.Finished"
-                            onchange="this.form.submit()" />
+                               name="finished"
+                               value="true"
+                               checked="@applicationTask.Finished"
+                               onchange="this.form.submit()" />
                     </form>
 
-                    <div class="task-info">
-                        <strong>@applicationTask.Task</strong>
+                    <a asp-page="./Details"
+                       asp-route-id="@applicationTask.Id"
+                       class="task-link">
 
-                        @if (applicationTask.Application != null)
+                        <div class="task-info">
+                            <strong>@applicationTask.Task</strong>
+
+                            @if (applicationTask.Application != null)
+                            {
+                                <span class="task-application">
+                                    @applicationTask.Application.Company ·
+                                    @applicationTask.Application.Role
+                                </span>
+                            }
+                        </div>
+
+                        @if (applicationTask.Deadline.HasValue)
                         {
-                            <span class="task-application">
-                                @applicationTask.Application.Company · @applicationTask.Application.Role
+                            <span class="task-deadline">
+                                @applicationTask.Deadline.Value.ToString("dd/MM/yyyy")
                             </span>
                         }
-                    </div>
 
-                    @if (applicationTask.Deadline.HasValue)
-                    {
-                        <span class="task-deadline">
-                            @applicationTask.Deadline.Value.ToString("dd/MM/yyyy")
-                        </span>
-                    }
-
+                    </a>
                 </div>
-
             }
-
         </div>
     }
 
@@ -70,43 +78,51 @@
     {
         <div class="applications-table">
 
-            <!-- Task rows -->
             @foreach (var applicationTask in Model.CompletedTasks)
             {
-                <div class="task-row @(applicationTask.Finished ? "task-done" : "")">
+                <div class="task-row task-done">
 
-                    <form method="post" asp-page-handler="SetFinished" class="task-check">
-                        <input type="hidden" name="id" value="@applicationTask.Id" />
+                    <form method="post"
+                          asp-page-handler="SetFinished"
+                          class="task-check">
+
+                        <input type="hidden"
+                               name="id"
+                               value="@applicationTask.Id" />
+
                         <input type="checkbox"
-                            name="finished"
-                            value="true"
-                            checked="@applicationTask.Finished"
-                            onchange="this.form.submit()" />
+                               name="finished"
+                               value="true"
+                               checked="@applicationTask.Finished"
+                               onchange="this.form.submit()" />
                     </form>
 
-                    <div class="task-info">
-                        <strong>@applicationTask.Task</strong>
+                    <a asp-page="./Details"
+                       asp-route-id="@applicationTask.Id"
+                       class="task-link">
 
-                        @if (applicationTask.Application != null)
+                        <div class="task-info">
+                            <strong>@applicationTask.Task</strong>
+
+                            @if (applicationTask.Application != null)
+                            {
+                                <span class="task-application">
+                                    @applicationTask.Application.Company ·
+                                    @applicationTask.Application.Role
+                                </span>
+                            }
+                        </div>
+
+                        @if (applicationTask.Deadline.HasValue)
                         {
-                            <span class="task-application">
-                                @applicationTask.Application.Company · @applicationTask.Application.Role
+                            <span class="task-deadline">
+                                @applicationTask.Deadline.Value.ToString("dd/MM/yyyy")
                             </span>
                         }
-                    </div>
 
-                    @if (applicationTask.Deadline.HasValue)
-                    {
-                        <span class="task-deadline">
-                            @applicationTask.Deadline.Value.ToString("dd/MM/yyyy")
-                        </span>
-                    }
-
+                    </a>
                 </div>
-
             }
-
         </div>
     }
-
 </div>
