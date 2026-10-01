@@ -1,6 +1,7 @@
 using grad_manager.Data;
 using grad_manager.Models;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace grad_manager.Pages;
@@ -21,9 +22,15 @@ public class IndexModel : PageModel
 
     public List<Application> UpcomingDeadlines { get; set; } = new();
 
+    public List<ApplicationTask> UpcomingTaskDeadlines { get; set; } = new();
+
     public async Task OnGetAsync()
     {
         var applications = await _context.Applications.ToListAsync();
+
+        var applicationTasks = await _context.ApplicationTasks
+            .Include(t => t.Application)
+            .ToListAsync();
 
         TotalApplications = applications.Count;
 
@@ -47,5 +54,30 @@ public class IndexModel : PageModel
             .OrderBy(a => a.Deadline)
             .Take(5)
             .ToList();
+
+        UpcomingTaskDeadlines = applicationTasks
+            .Where(a => a.Deadline.HasValue &&
+                        a.Deadline.Value.Date >= DateTime.Today &&
+                        a.Finished == false)
+            .OrderBy(a => a.Deadline)
+            .Take(5)
+            .ToList();
     }
+
+    public async Task<IActionResult> OnPostSetFinishedAsync(int id, bool finished)
+    {
+        var applicationTask = await _context.ApplicationTasks.FindAsync(id);
+
+        if (applicationTask == null)
+        {
+            return NotFound();
+        }
+
+        applicationTask.Finished = finished;
+
+        await _context.SaveChangesAsync();
+
+        return RedirectToPage();
+    }
+
 }

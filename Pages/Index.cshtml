@@ -42,7 +42,7 @@
     <div class="dashboard-section">
 
         <div class="section-header">
-            <h2>Upcoming Deadlines</h2>
+            <h2>Upcoming Application Deadlines</h2>
 
             <a asp-page="/Applications/Index">
                 View all applications
@@ -52,7 +52,7 @@
         @if (Model.UpcomingDeadlines.Count == 0)
         {
             <div class="empty-state">
-                <p>No upcoming deadlines.</p>
+                <p>No upcoming deadlines</p>
             </div>
         }
         else
@@ -78,6 +78,77 @@
                         </div>
 
                     </a>
+                }
+
+            </div>
+        }
+
+    </div>
+
+    <div class="dashboard-section">
+
+        <div class="section-header">
+            <h2>Upcoming Task Deadlines</h2>
+
+            <a asp-page="/ApplicationTasks/Index">
+                View all Tasks
+            </a>
+        </div>
+
+        @if (Model.UpcomingTaskDeadlines.Count == 0)
+        {
+            <div class="empty-state">
+                <p>No upcoming task deadlines</p>
+            </div>
+        }
+        else
+        {
+            <div class="dashboard-applications">
+
+                @foreach (var applicationTask in Model.UpcomingTaskDeadlines)
+                {
+                    <div class="task-row @(applicationTask.Finished ? "task-done" : "")">
+
+                        <form method="post"
+                            asp-page-handler="SetFinished"
+                            class="task-check">
+
+                            <input type="hidden"
+                                name="id"
+                                value="@applicationTask.Id" />
+
+                            <input type="checkbox"
+                                name="finished"
+                                value="true"
+                                checked="@applicationTask.Finished"
+                                onchange="this.form.submit()" />
+                        </form>
+
+                        <a asp-page="./ApplicationTasks/Details"
+                            asp-route-id="@applicationTask.Id"
+                            class="task-link">
+
+                            <div class="task-info">
+                                <strong>@applicationTask.Task</strong>
+
+                                @if (applicationTask.Application != null)
+                                {
+                                    <span class="task-application">
+                                        @applicationTask.Application.Company ·
+                                        @applicationTask.Application.Role
+                                    </span>
+                                }
+                            </div>
+
+                            @if (applicationTask.Deadline.HasValue)
+                            {
+                                <span class="task-deadline">
+                                    @applicationTask.Deadline.Value.ToString("dd/MM/yyyy")
+                                </span>
+                            }
+
+                        </a>
+                    </div>
                 }
 
             </div>

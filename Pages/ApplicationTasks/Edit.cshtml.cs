@@ -43,19 +43,18 @@ public class EditModel : PageModel
             return Page();
         }
 
-        var taskToUpdate = await _context.Applications.FindAsync(ApplicationTask.Id);
+        var taskToUpdate = await _context.ApplicationTasks.FindAsync(ApplicationTask.Id);
 
         if (taskToUpdate == null)
         {
             return NotFound();
         }
 
-        //taskToUpdate.Application = ApplicationTask.Application;
         taskToUpdate.Deadline = ApplicationTask.Deadline;
-        taskToUpdate.Notes = ApplicationTask.Task;
+        taskToUpdate.Task = ApplicationTask.Task;
 
         await _context.SaveChangesAsync();
 
-        return RedirectToPage("./Index");
+        return RedirectToPage("/Index");
     }
 }
