@@ -3,6 +3,16 @@
 
 <div class="application-details">
 
+    @if (Model.ApplicationTask.Application != null)
+    {
+        <div class="details-header">
+            <div>
+                <h1>@Model.ApplicationTask.Application.Company</h1>
+                <p>@Model.ApplicationTask.Application.Role</p>
+            </div>
+        </div>
+    }
+
     <div class="details-card">
 
         <div class="details-grid">

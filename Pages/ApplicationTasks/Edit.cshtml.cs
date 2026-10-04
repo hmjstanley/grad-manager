@@ -2,6 +2,8 @@ using grad_manager.Data;
 using grad_manager.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 
 namespace grad_manager.Pages.ApplicationTasks;
 
@@ -16,6 +18,8 @@ public class EditModel : PageModel
 
     [BindProperty]
     public ApplicationTask ApplicationTask { get; set; } = new();
+
+    public SelectList Applications { get; set; } = default!;
 
     public async Task<IActionResult> OnGetAsync(int? id)
     {
@@ -33,6 +37,8 @@ public class EditModel : PageModel
 
         ApplicationTask = applicationTask;
 
+        await LoadApplicationsAsync();
+
         return Page();
     }
 
@@ -40,10 +46,12 @@ public class EditModel : PageModel
     {
         if (!ModelState.IsValid)
         {
+            await LoadApplicationsAsync();
             return Page();
         }
 
-        var taskToUpdate = await _context.ApplicationTasks.FindAsync(ApplicationTask.Id);
+        var taskToUpdate = await _context.ApplicationTasks
+            .FindAsync(ApplicationTask.Id);
 
         if (taskToUpdate == null)
         {
@@ -56,5 +64,25 @@ public class EditModel : PageModel
         await _context.SaveChangesAsync();
 
         return RedirectToPage("/Index");
+    }
+
+    private async Task LoadApplicationsAsync()
+    {
+        var applications = await _context.Applications
+            .OrderBy(a => a.Company)
+            .ThenBy(a => a.Role)
+            .Select(a => new
+            {
+                a.Id,
+                DisplayName = a.Company + " — " + a.Role
+            })
+            .ToListAsync();
+
+        Applications = new SelectList(
+            applications,
+            "Id",
+            "DisplayName",
+            ApplicationTask.ApplicationId
+        );
     }
 }

@@ -2,6 +2,7 @@ using grad_manager.Data;
 using grad_manager.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
 
 namespace grad_manager.Pages.ApplicationTasks;
 
@@ -23,7 +24,9 @@ public class DetailsModel : PageModel
             return NotFound();
         }
 
-        var applicationTask = await _context.ApplicationTasks.FindAsync(id);
+        var applicationTask = await _context.ApplicationTasks
+            .Include(t => t.Application)
+            .FirstOrDefaultAsync(t => t.Id == id);
 
         if (applicationTask == null)
         {

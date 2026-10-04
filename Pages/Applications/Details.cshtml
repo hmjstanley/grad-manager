@@ -49,7 +49,9 @@
                 <p>
                     @if (!string.IsNullOrWhiteSpace(Model.Application.Url))
                     {
-                        <a href="@Model.Application.Url" target="_blank" rel="noopener noreferrer">
+                        <a href="@Model.Application.Url"
+                           target="_blank"
+                           rel="noopener noreferrer">
                             @Model.Application.Url
                         </a>
                     }
@@ -97,6 +99,7 @@
                         <path d="M14 11v5"></path>
                         <path d="M9 6V4h6v2"></path>
                     </svg>
+
                 </a>
 
                 <a asp-page="./Edit"
@@ -108,6 +111,142 @@
             </div>
 
         </div>
+
+    </div>
+
+    <div class="dashboard-section application-task">
+
+        <div class="section-header">
+            <h2>Upcoming Tasks</h2>
+
+            <a asp-page="/ApplicationTasks/Index">
+                View all Tasks
+            </a>
+        </div>
+
+        @if (Model.UpcomingTaskDeadlines.Count == 0)
+        {
+            <div class="empty-state">
+                <p>No upcoming tasks</p>
+            </div>
+        }
+        else
+        {
+            <div class="dashboard-applications">
+
+                @foreach (var applicationTask in Model.UpcomingTaskDeadlines)
+                {
+                    <div class="task-row">
+
+                        <form method="post"
+                              asp-page-handler="SetFinished"
+                              class="task-check">
+
+                            <input type="hidden"
+                                   name="id"
+                                   value="@applicationTask.Id" />
+
+                            <input type="checkbox"
+                                   name="finished"
+                                   value="true"
+                                   checked="@applicationTask.Finished"
+                                   onchange="this.form.submit()" />
+
+                        </form>
+
+                        <a asp-page="/ApplicationTasks/Details"
+                           asp-route-id="@applicationTask.Id"
+                           class="task-link">
+
+                            <div class="task-info">
+
+                                <strong>@applicationTask.Task</strong>
+
+                                <span class="task-application">
+                                    @Model.Application.Company ·
+                                    @Model.Application.Role
+                                </span>
+
+                            </div>
+
+                            @if (applicationTask.Deadline.HasValue)
+                            {
+                                <span class="task-deadline">
+                                    @applicationTask.Deadline.Value.ToString("dd/MM/yyyy")
+                                </span>
+                            }
+
+                        </a>
+
+                    </div>
+                }
+
+            </div>
+        }
+
+        <div class="section-header finished-header">
+            <h2>Finished Tasks</h2>
+        </div>
+
+        @if (Model.FinishedTasks.Count == 0)
+        {
+            <div class="empty-state">
+                <p>No finished tasks</p>
+            </div>
+        }
+        else
+        {
+            <div class="dashboard-applications">
+
+                @foreach (var applicationTask in Model.FinishedTasks)
+                {
+                    <div class="task-row task-done">
+
+                        <form method="post"
+                              asp-page-handler="SetFinished"
+                              class="task-check">
+
+                            <input type="hidden"
+                                   name="id"
+                                   value="@applicationTask.Id" />
+
+                            <input type="checkbox"
+                                   name="finished"
+                                   value="false"
+                                   checked
+                                   onchange="this.form.submit()" />
+
+                        </form>
+
+                        <a asp-page="/ApplicationTasks/Details"
+                           asp-route-id="@applicationTask.Id"
+                           class="task-link">
+
+                            <div class="task-info">
+
+                                <strong>@applicationTask.Task</strong>
+
+                                <span class="task-application">
+                                    @Model.Application.Company ·
+                                    @Model.Application.Role
+                                </span>
+
+                            </div>
+
+                            @if (applicationTask.Deadline.HasValue)
+                            {
+                                <span class="task-deadline">
+                                    @applicationTask.Deadline.Value.ToString("dd/MM/yyyy")
+                                </span>
+                            }
+
+                        </a>
+
+                    </div>
+                }
+
+            </div>
+        }
 
     </div>
 

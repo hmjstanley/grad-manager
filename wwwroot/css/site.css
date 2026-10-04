@@ -212,6 +212,10 @@ body {
     gap: 1.5rem;
 }
 
+.task-field {
+    grid-column: span 2;
+}
+
 .form-group {
     display: flex;
     flex-direction: column;
@@ -531,11 +535,19 @@ body {
     margin-bottom: 2rem;
 }
 
+.application-task {
+    margin-top: 2rem;
+}
+
 .section-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 1.25rem;
+}
+
+.finished-header {
+    margin-top: 1rem;
 }
 
 .section-header h2 {

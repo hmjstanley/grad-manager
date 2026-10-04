@@ -16,16 +16,27 @@
             <div class="form-grid">
 
                 <div class="form-group">
-                    <label asp-for="ApplicationTask.Task"></label>
-                    <input asp-for="ApplicationTask.Task" placeholder="e.g. Prepare for interview" />
-                    <span asp-validation-for="ApplicationTask.Task"></span>
-                </div>
+                    <label asp-for="ApplicationTask.ApplicationId">Application</label>
 
+                    <select asp-for="ApplicationTask.ApplicationId"
+                            asp-items="Model.Applications">
+                        <option value="">Select an application</option>
+                    </select>
+
+                    <span asp-validation-for="ApplicationTask.ApplicationId"></span>
+                </div>
 
                 <div class="form-group">
                     <label asp-for="ApplicationTask.Deadline"></label>
                     <input asp-for="ApplicationTask.Deadline" type="date" />
                     <span asp-validation-for="ApplicationTask.Deadline"></span>
+                </div>
+
+
+                <div class="form-group task-field">
+                    <label asp-for="ApplicationTask.Task"></label>
+                    <input asp-for="ApplicationTask.Task" placeholder="e.g. Prepare for interview" />
+                    <span asp-validation-for="ApplicationTask.Task"></span>
                 </div>
 
             </div>
